@@ -2,7 +2,11 @@
 This program can be distributed but Dont forget to metion me ;)
 
 ## IMPORTANT INFO
+
 THE FOLDER SHOULD HAVE 'app.out' and 'app.exe' FILES , RUN AS PER THE FOLLOWING INSTRUCTIONS.
+
+NOTE: WINDOWS 10 POWERSHELL MIGHT NOT GIVE THE BEST EXPERIENCE, A NEWER, OR AN ANSI-COMPATIBLE TERMINAL IS RECOMMENED. 
+
 
 # To Run this program , since it is a terminal application, do the following :-
 FOR WINDOWS SYSTEMS --
