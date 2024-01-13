@@ -1,2 +1,2 @@
-# terminal-c-app
+# Terminal-C-App
 Terminal application written in c 
