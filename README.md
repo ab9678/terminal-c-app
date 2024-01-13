@@ -13,7 +13,7 @@ Feel free to distribute this program, but don't forget to mention me ;)
 
 ### To Run this program on Windows systems:
 
-**NOTE**: WINDOWS 10 USERS MIGHT HAVE TO ENABLE ANSI COLOUR SUPPORT IN POWERSHELL,  ELSE USING A NEWER TERMINAL MIGHT SOLVE ANY ISSUES FACED.
+**NOTE**: WINDOWS 10 USERS MIGHT HAVE TO ENABLE ANSI COLOUR SUPPORT IN POWERSHELL,  ELSE USING A NEWER TERMINAL MIGHT SOLVE ANY ISSUES.
 
 1. Open File Explorer and navigate to the folder.
 2. Inside the folder, you should find three files: `app.exe`, `code.c`, and `a.out`.
