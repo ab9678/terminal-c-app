@@ -4,12 +4,13 @@
 #define BLK "\e[0;30m"
 #define RED "\e[0;31m"
 #define GRN "\e[0;32m"
-#define YEL "\e[0;93m"
+#define YEL "\e[0;33m"
 #define BLU "\e[0;34m"
 #define PUR "\e[0;35m"
 #define CYN "\e[0;36m"
 #define WHT "\e[0;37m"
 #define RESET "\e[0m"
+long long int factorial(int n);
 void asciiHello(){
     printf("\n\n");
     printf(" ## ##              ##     ### ##   ### ##   \n");
@@ -374,7 +375,7 @@ for(i=0;i<rowSize;i++){
 }
 
 char insideType2;
-printf(YEL"\nPlease select one of the following \n\n' + '  ,  ' - '  ,  ' * '\nInput: "RESET);
+printf(GRN"\nPlease select one of the following \n\n +  ,  -  ,  * \nInput: "RESET);
 scanf(" %c",&insideType2);
 
 if(insideType2 == '+'){
@@ -450,7 +451,7 @@ printf("\n----------------------------------------------------------------------
 int integer(){
 
 int operation;
-printf(YEL"Specify operation\n(1)Calculator\n(2)Palindrome\nInput: "RESET);
+printf(YEL"Specify operation\n(1)Calculator\n(2)Other\nInput: "RESET);
 scanf("%d",&operation);
 
 if(operation == 1){
@@ -469,7 +470,7 @@ if(operation == 1){
     scanf("%f",&num2);
 
     char calOperator;
-    printf("Select one among the Following\n'+'\t'-'\t'/'\t'*'\nInput: ");
+    printf(GRN"Select one among the Following\n\n'+'\t'-'\t'/'\t'*'\nInput: ");
     scanf(" %c",&calOperator);
     if(calOperator == '+'){
         result = num1 + num2;
@@ -493,17 +494,106 @@ if(operation == 1){
     }
 
 }else if(operation == 2){
-    printf("\e[0;93m");
-    printf("\n------------------------------------------------------------------------------------------------------\n");
-    printf("You Chose Palindrome");
-    printf("\n------------------------------------------------------------------------------------------------------\n");
-    printf("\e[0m");
+    int insideOperation;
+    printf(YEL"\n------------------------------------------------------------------------------------------------------\n");
+    printf("You Chose Other");
+    printf("\n------------------------------------------------------------------------------------------------------\n"RESET);
     
+    printf("\nSelect one of the following"RESET);
+    printf("\n\n(1)Check prime\n(2)Factorial calculator\n(3)Check if No. is Armstrong No.\n(4)Number belongs to Fibonacci sequence\n\n"YEL"Input: "RESET);
+    
+    scanf("%d",&insideOperation);
+    int number;
+    printf("Enter the Number\nInput: ");
+    scanf("%d",&number);
+    if(insideOperation == 1){
+        //check if a number is prime
+        //a number is said to be prime if and only if it is divisible by 1 and the number itself
+        int i,flag=0;
+        if(number < 2){
+            flag = 2;
+            
+        }else{
+            for(i=2;i<number;i++){
+            if(number%i==0){
+                flag = 1;
+                break;
+                
+                }
+            }
+        }
+
+        if(flag==2){
+            printf(GRN"The Number entered is smaller than 2, which is the smallest prime number\n"RESET);
+        }else if(flag == 1){
+            printf(GRN"The Number is not a Prime Number\n"RESET);
+        }else if(flag == 0){
+            printf(GRN"The Number is a Prime Number\n"RESET);
+        }
+
+
+
+    }
+    else if(insideOperation == 2){
+        //calculate factorial of a number
+        printf(GRN"Factorial of %d is = %lld\n",number,factorial(number));
+        printf(RESET);
+    }
+    else if(insideOperation == 3){
+        //check if a number is armstrong number
+        //A number is an armstrong number if the cube of its indivisual digits add up to be the same number
+
+        int Original=number;
+        int sum=0,num,cube;
+        while(number){
+            num = number %10;
+            number = number/10;
+
+            cube = num*num*num;
+            sum = sum + cube;
+
+        }
+        
+        if(sum == Original){
+            printf(GRN"The Number %d is an Armstrong Number\n",Original);
+            printf(RESET);
+        }else{
+            printf(GRN"The Number is Not an Armstrong Number\n"RESET);
+        }
+    }
+    else if(insideOperation == 4){
+        //check if a number belongs to the fibonacci sequence
+        int flag=0;
+        int first=0,second=1,next=0;
+        do {
+        next = first + second;
+        printf(GRN"%d\t", next);
+
+        first = second;
+        second = next;
+        if(next == number){
+            flag=1;
+            break;
+        }
+    } while (next <= number);
+    if(flag == 1){
+        printf(GRN"\nThe Number Belongs to the Fibonacci sequence\n"RESET);
+    }else{
+        printf(GRN"\nThe Number does not belong to the Fibonacci sequence\n");
+    }
+    }else{
+        printf(RED"\n\nInvalid Input"RESET);
+        return 1;
+    }
+
+
+}else{
+    printf(RED"\nInvalid Input\n"RESET);
+    return 1;
 }
 
 
 }
-
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 int main(){
@@ -513,7 +603,7 @@ printf("\e[0m");
 
 int operation;
 
-printf(CYN"Specify the operation to be performed (Enter the corresponding number)\n\n1. Array \n2. Matrix \n3. Integers \n4. File Handling \n5. Structure \n6. Special series\nInput:  "RESET);
+printf("Specify the operation to be performed (Enter the corresponding number)\n\n1. Array \n2. Matrix \n3. Integers \n4. File Handling \n5. Structure \n6. Special series\nInput:  "RESET);
 
 scanf("%d",&operation);
 
@@ -584,7 +674,20 @@ printf(YEL"\n-------------------------------------------------------------------
     printf("You have selected Integers");
 printf("\n------------------------------------------------------------------------------------------------------\n"RESET);
     returnedValue=integer();
-
+    if(returnedValue == 1){
+        printf(GRN"\n\nDo You want to try Again?(y/n)\n"RESET);
+        scanf(" %c",&yesORno);
+        if(yesORno == 'y'){
+            integer();
+        }
+    }else{
+        printf(GRN"\n\nOnce More(y/n)?\n"RESET);
+        scanf(" %c",&yesORno);
+        if(yesORno == 'y'){
+            integer();
+        }
+    }
+    
 
 
 
@@ -602,3 +705,11 @@ printf("\e[0m");
 //Main Function End
 }
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+long long int factorial(int n){
+    if(n==1){
+        return 1;
+    }else if (n==0){
+        return 0;
+    }
+    return n * factorial(n-1);
+}
