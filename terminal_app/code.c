@@ -460,39 +460,54 @@ if(operation == 1){
     printf("You Chose Calculator");
     printf("\n------------------------------------------------------------------------------------------------------\n");
     printf("\e[0m");
+
+    int calType;
+    printf("Select one\n(1)Arithmetic(+,-,/,*)\n(2)Factorial Calculator\nInput: ");
+    scanf("%d",&calType);
+    
+    if(calType == 1){
     //Calculator
-    float num1;
-    float num2;
-    float result=0;
-    printf("\nNum1: ");
-    scanf("%f",&num1);
-    printf("\nNum2: ");
-    scanf("%f",&num2);
 
-    char calOperator;
-    printf(GRN"Select one among the Following\n\n'+'\t'-'\t'/'\t'*'\nInput: ");
-    scanf(" %c",&calOperator);
-    if(calOperator == '+'){
-        result = num1 + num2;
-        printf("\n\n%f + %f = %f\n",num1,num2,result);
+        float num1;
+        float num2;
+        float result=0;
+        printf("\nNum1: ");
+        scanf("%f",&num1);
+        printf("\nNum2: ");
+        scanf("%f",&num2);
+        char calOperator;
+        printf(GRN"Select one among the Following\n\n'+'\t'-'\t'/'\t'*'\nInput: ");
+        scanf(" %c",&calOperator);
+        if(calOperator == '+'){
+            result = num1 + num2;
+            printf("\n\n%f + %f = %f\n",num1,num2,result);
+        }
+        else if(calOperator == '-'){
+            result = num1 - num2;
+            printf("\n\n%f - %f = %f\n",num1,num2,result);
+        }
+        else if(calOperator == '/'){
+            result = num1 / num2;
+            printf("\n\n%f / %f = %f\n",num1,num2,result);
+        }
+        else if(calOperator == '*'){
+            result = num1 * num2;
+            printf("\n\n%f x %f = %f\n",num1,num2,result);
+        }
+        else{
+            printf(RED"\nInvalid Operator\n"RESET);
+            return 1;
+        }
+    }else if(calType == 2){
+        int number;
+        //calculate factorial of a number
+        printf("Enter the Number\nInput: ");
+        scanf("%d",&number);
+        printf(GRN"Factorial of %d is = %lld\n",number,factorial(number));
+        printf(RESET);        
+    }else{
+        printf(RED"\nInvalid Input\n"RESET);
     }
-    else if(calOperator == '-'){
-        result = num1 - num2;
-        printf("\n\n%f - %f = %f\n",num1,num2,result);
-    }
-    else if(calOperator == '/'){
-        result = num1 / num2;
-        printf("\n\n%f / %f = %f\n",num1,num2,result);
-    }
-    else if(calOperator == '*'){
-        result = num1 * num2;
-        printf("\n\n%f x %f = %f\n",num1,num2,result);
-    }
-    else{
-        printf(RED"\nInvalid Operator\n"RESET);
-        return 1;
-    }
-
 }else if(operation == 2){
     int insideOperation;
     printf(YEL"\n------------------------------------------------------------------------------------------------------\n");
@@ -500,7 +515,7 @@ if(operation == 1){
     printf("\n------------------------------------------------------------------------------------------------------\n"RESET);
     
     printf("\nSelect one of the following"RESET);
-    printf("\n\n(1)Check prime\n(2)Factorial calculator\n(3)Check if No. is Armstrong No.\n(4)Number belongs to Fibonacci sequence\n\n"YEL"Input: "RESET);
+    printf("\n\n(1)Check prime\n(2)Check if No. is Armstrong No.\n(3)Check if a Number belongs to Fibonacci sequence\n\n"YEL"Input: "RESET);
     
     scanf("%d",&insideOperation);
     int number;
@@ -534,12 +549,8 @@ if(operation == 1){
 
 
     }
+    
     else if(insideOperation == 2){
-        //calculate factorial of a number
-        printf(GRN"Factorial of %d is = %lld\n",number,factorial(number));
-        printf(RESET);
-    }
-    else if(insideOperation == 3){
         //check if a number is armstrong number
         //A number is an armstrong number if the cube of its indivisual digits add up to be the same number
 
@@ -561,10 +572,11 @@ if(operation == 1){
             printf(GRN"The Number is Not an Armstrong Number\n"RESET);
         }
     }
-    else if(insideOperation == 4){
+    else if(insideOperation == 3){
         //check if a number belongs to the fibonacci sequence
         int flag=0;
         int first=0,second=1,next=0;
+        printf(GRN"%d\t%d\t",first,second);
         do {
         next = first + second;
         printf(GRN"%d\t", next);
@@ -595,6 +607,13 @@ if(operation == 1){
 
 }
 
+
+int structure(){
+
+
+
+    
+}
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 int main(){
 printf("\e[0;93m");
@@ -690,8 +709,16 @@ printf("\n----------------------------------------------------------------------
     
 
 
+//INTEGER END
+}else if(operation == 4){
+printf(YEL"\n------------------------------------------------------------------------------------------------------\n");
+    printf("You have selected Stuctures");
+printf("\n------------------------------------------------------------------------------------------------------\n"RESET);
+    returnedValue=structure();
+    
 
-}//INTEGER END 
+    
+}
 
 
 
