@@ -608,9 +608,43 @@ if(operation == 1){
 }
 
 
-int structure(){
+int structures(){
+
+// Make a structure to store the details of n students. Store their marks of n subject which is total
+// Now the code shall chose best of 5 and store it in best array.
+// Then it will calculate the average and the percentage, and this will be printed with the details.
+// Now in a saperate block, it will calculate the topper and print his details saperately.
+int nOfSub;
+printf(YEL"\nHow many subject are to be considered?\nInput: "RESET);
+scanf("%d",&nOfSub);
+
+struct student
+{
+    char name[20];
+    int rollNumber;
+    char course[20];
+    int sem;
+    int marks[nOfSub];
+    
+
+}s1;
+struct employee
+{
+    char name[20];
+    int empID;
+    int basesalary;
+    int performanceBonus;
+    int totalSalary;
+};
 
 
+printf("\n\nCOURSE: ");
+scanf(" %s",s1.course);
+
+printf("\nSEMESTER: ");
+scanf("%d",&s1.sem);
+
+int i,j,sum=0,avg=0,highest=0;
 
     
 }
@@ -625,7 +659,7 @@ int operation;
 printf("Specify the operation to be performed (Enter the corresponding number)\n\n1. Array \n2. Matrix \n3. Integers \n4. File Handling \n5. Structure \n6. Special series\nInput:  "RESET);
 
 scanf("%d",&operation);
-
+printf("%d",operation);
 int returnedValue;
 char yesORno;
 
@@ -687,7 +721,7 @@ if(operation==1){
 
 
 //MATRIX END
-}else if(operation = 3){
+}else if(operation == 3){
 //INTEGER START
 printf(YEL"\n------------------------------------------------------------------------------------------------------\n");
     printf("You have selected Integers");
@@ -710,11 +744,11 @@ printf("\n----------------------------------------------------------------------
 
 
 //INTEGER END
-}else if(operation == 4){
-printf(YEL"\n------------------------------------------------------------------------------------------------------\n");
+}else if(operation == 5){
+    printf(YEL"\n------------------------------------------------------------------------------------------------------\n");
     printf("You have selected Stuctures");
-printf("\n------------------------------------------------------------------------------------------------------\n"RESET);
-    returnedValue=structure();
+    printf("\n------------------------------------------------------------------------------------------------------\n"RESET);
+    structures();
     
 
     
