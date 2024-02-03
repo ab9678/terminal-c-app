@@ -1,6 +1,11 @@
 #include<stdio.h>
 #include<string.h>
 #include<stdlib.h>
+#include <ctype.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <unistd.h>
+
 #define BLK "\e[0;30m"
 #define RED "\e[0;31m"
 #define GRN "\e[0;32m"
@@ -609,7 +614,8 @@ if(operation == 1){
 
 
 int structures(){
-
+const char *home = getenv("HOME");
+const char *fileName = ".structure-student-c-program-saved-options.txt";
 // Make a structure to store the details of n students. Store their marks of n subject which is total
 // Now the code shall chose best of 5 and store it in best array.
 // Then it will calculate the average and the percentage, and this will be printed with the details.
@@ -625,6 +631,9 @@ struct student
     char course[20];
     int sem;
     int marks[nOfSub];
+    int avg;
+    int bestMarks;
+
     
 
 }s1;
@@ -637,17 +646,116 @@ struct employee
     int totalSalary;
 };
 
+int i=0,j=0,sum=0,avg=0,highest=0;
 
-printf("\n\nCOURSE: ");
-scanf(" %s",s1.course);
+int tempScan;
+char filePath[100];  // Adjust the size based on your needs
+snprintf(filePath, sizeof(filePath), "/%s/%s", home, fileName);
 
-printf("\nSEMESTER: ");
-scanf("%d",&s1.sem);
+//open the file in write mode initially
+FILE *fp=fopen(filePath,"r");
 
-int i,j,sum=0,avg=0,highest=0;
+int savedOptions[7]={0};
+
+int option;
+char prompt;
+printf("(1)Create a structure to store details of students\n(2)Create a structure to store details of employees\nInput: ");
+scanf("%d",&option);
+if (option == 1){
+    printf("\n\nCOURSE: ");
+    scanf(" %s",s1.course);
+
+    printf("\nSEMESTER: ");
+    scanf("%d",&s1.sem);
 
     
+
+    printf("Use previous layout?(y,n)\nInput: ");
+    scanf(" %c",&prompt);
+    if(prompt == 'y'){
+        //create file to store saved values(will be used when the user is using this for the first time)
+        if(fp == NULL){
+            fp = fopen(filePath,"w");
+            printf(RED"\n\nNo previous config available\n\n"RESET);
+            fclose(fp);
+            return 1;
+        }
+
+        //File is already opened in read mode so no need to open again
+        rewind(fp);
+        while(!feof(fp)){
+            fscanf(fp , "%1d" , &tempScan);
+            savedOptions[i++]=tempScan;
+        }
+        fclose(fp);
+        //temp
+        fp=fopen(filePath,"r");
+        rewind(fp);
+        int a;
+        int k=0;
+        while(!feof(fp)){
+            fscanf(fp,"%1d",&savedOptions[k]);
+            //printf("%d\t",savedOptions[k]);
+            k++;
+        }
+
+        
+        //The user doesnt want to use the previous configuration
+    }else if(prompt == 'n'){
+        //create new set of options and save then in the file.
+        int inputOption;
+        printf("Please select the required fields\n\n(1)Name\n(2)Roll Number\n(3)Section\n(4)Average Marks\n(5)Indivisual Best\n(6)Subject Topper\n(7)Class Topper\nPress k when done\nInput: ");
+        scanf("%d",&inputOption);
+
+        //writing the saved numbers, i.e, the input number in inputOption variable , to the file
+        fp = fopen(filePath,"w");
+        fprintf(fp , "%1d" , inputOption);
+        fclose(fp);
+
+        //open the file to read the data and store it in the variable
+        fp = fopen(filePath,"r");
+        //copy the numbers/options selected from the file to the array, here j is the iterator
+        while(!feof(fp)){
+            fscanf(fp,"%1d",&savedOptions[j]);
+            
+            j++;
+        }
+
+            
+    }
 }
+//print the options which are saved for my reference
+    printf("\n\n");
+    for(i=0;i<7;i++){
+        printf("%d\t",savedOptions[i]);
+    }
+// now write the code for each value of savedoptions[1-7];
+
+//_________________________
+// Now let's search for elements in the array , so that we can tell the user which options he chose
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//function close
+}
+    
+
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 int main(){
 printf("\e[0;93m");
