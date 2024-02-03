@@ -15,6 +15,17 @@
 #define CYN "\e[0;36m"
 #define WHT "\e[0;37m"
 #define RESET "\e[0m"
+//Operating system
+#ifdef _WIN32
+    const char *os = "Windows";
+    int osflag = 1;
+#elif __linux__
+    const char *os = "Linux";
+    int osflag = 0;
+#else
+    const char *os = "Unknown";
+    int osflag = -1;
+#endif
 long long int factorial(int n);
 void asciiHello(){
     printf("\n\n");
@@ -614,8 +625,17 @@ if(operation == 1){
 
 
 int structures(){
-const char *home = getenv("HOME");
-const char *fileName = ".structure-student-c-program-saved-options.txt";
+
+const char *home;
+const char *fileName;
+
+if(osflag == 0){
+    home = getenv("HOME");
+    fileName = ".structure-student-c-program-saved-options.txt";
+}else{
+    home = getenv("USERPROFILE"); // On Windows, use "USERPROFILE" instead of "HOME"
+    fileName = "\\structure-student-c-program-saved-options.txt"; // Use backslashes for Windows path
+}
 // Make a structure to store the details of n students. Store their marks of n subject which is total
 // Now the code shall chose best of 5 and store it in best array.
 // Then it will calculate the average and the percentage, and this will be printed with the details.
@@ -646,16 +666,27 @@ struct employee
     int totalSalary;
 };
 
+int numOfoptions;//variable for the size of saveOptions array
+numOfoptions = 7;
+int savedOptions[numOfoptions];
+
 int i=0,j=0,sum=0,avg=0,highest=0;
+//store 0 in all the indexes ;
+for(i=0;i<numOfoptions;i++){
+    savedOptions[i]=0;
+}
 
 int tempScan;
 char filePath[100];  // Adjust the size based on your needs
-snprintf(filePath, sizeof(filePath), "/%s/%s", home, fileName);
-
+if(osflag == 0){//if linux
+    snprintf(filePath, sizeof(filePath), "/%s/%s", home, fileName);
+}else{//if windows
+    snprintf(filePath, sizeof(filePath), "%s%s", home, fileName);
+}
 //open the file in write mode initially
 FILE *fp=fopen(filePath,"r");
 
-int savedOptions[7]={0};
+
 
 int option;
 char prompt;
@@ -726,15 +757,13 @@ if (option == 1){
 }
 //print the options which are saved for my reference
     printf("\n\n");
-    for(i=0;i<7;i++){
+    for(i=0;i<numOfoptions;i++){
         printf("%d\t",savedOptions[i]);
     }
-// now write the code for each value of savedoptions[1-7];
-
-//_________________________
-// Now let's search for elements in the array , so that we can tell the user which options he chose
 
     
+//_________________________
+// Now let's search for elements in the array , so that we can tell the user which options he chose
 
 
 
