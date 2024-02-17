@@ -648,7 +648,7 @@ int structures(){
     printf("Insert Number of students: ");
     scanf("%d",&numOfStudents);
 
-    char whichCourse;
+    char whichCourse[20];
     printf("\n\nCOURSE: ");
     scanf(" %s",whichCourse);
 
@@ -773,56 +773,56 @@ int structures(){
         
     //_________________________
     // Now let's search for elements in the array , so that we can tell the user which options he chose
-    printf("\n");
-    printf(YEL"\nYou have chosen the below fields\n\n"RESET);
-    for(i=0;i<numOfoptions;i++){
-        if(savedOptions[i]==1){
-            printf(GRN"Name\n"RESET);
-        }
-        if(savedOptions[i]==2){
-            printf(GRN"Roll Number\n"RESET);
-        }
-        if(savedOptions[i]==1){
-            printf(GRN"Section\n"RESET);
-        }
-        if(savedOptions[i]==2){
-            printf(GRN"Average Marks\n"RESET);
-        }
-        if(savedOptions[i]==1){
-            printf(GRN"Indivisual Best\n"RESET);
-        }
-        if(savedOptions[i]==2){
-            printf(GRN"Subject Topper\n"RESET);
-        }
-        if(savedOptions[i]==1){
-            printf(GRN"Class Topper\n"RESET);
-        }
+    // printf("\n");
+    // printf(YEL"\nYou have chosen the below fields\n\n"RESET);
+    // for(i=0;i<numOfoptions;i++){
+    //     if(savedOptions[i]==1){
+    //         printf(GRN"Name\n"RESET);
+    //     }
+    //     if(savedOptions[i]==2){
+    //         printf(GRN"Roll Number\n"RESET);
+    //     }
+    //     if(savedOptions[i]==1){
+    //         printf(GRN"Section\n"RESET);
+    //     }
+    //     if(savedOptions[i]==2){
+    //         printf(GRN"Average Marks\n"RESET);
+    //     }
+    //     if(savedOptions[i]==1){
+    //         printf(GRN"Indivisual Best\n"RESET);
+    //     }
+    //     if(savedOptions[i]==2){
+    //         printf(GRN"Subject Topper\n"RESET);
+    //     }
+    //     if(savedOptions[i]==1){
+    //         printf(GRN"Class Topper\n"RESET);
+    //     }
 
 
         
-    }
-    char yesORno;
-    printf("\nIS THE FIELDS CORRECT?(y/n) ");
-    scanf(" %c",&yesORno);
-    if(yesORno == 'n'){
-        return 1;
-    }
+    // }
+    // char yesORno;
+    // printf("\nIS THE FIELDS CORRECT?(y/n) ");
+    // scanf(" %c",&yesORno);
+    // if(yesORno == 'n'){
+    //     return 1;
+    // }
 
-    //search field and run code
-    printf(YEL"\n\n--------------------------------------------------------------------------------------\n\n"RESET);
-    printf("Course: %s\nSemster: %d",whichCourse,whichSemester);
-    for(i=0;i<numOfStudents;i++){
+    // //search field and run code
+    // printf(YEL"\n\n--------------------------------------------------------------------------------------\n\n"RESET);
+    // printf("Course: %s\nSemster: %d",whichCourse,whichSemester);
+    // for(i=0;i<numOfStudents;i++){
         
-        for(j=0;j<numOfoptions;i++){
-            if(savedOptions[i]==1){
-                printf("\nName: ");
-                scanf("%d",&s1[i].name);
-            }for(j=0;j<numOfStudents;i++){
+    //     for(j=0;j<numOfoptions;i++){
+    //         if(savedOptions[i]==1){
+    //             printf("\nName: ");
+    //             scanf(" %c",&s1[i].name);
+    //         }for(j=0;j<numOfStudents;i++){
                 
-            }
-        }   
+    //         }
+    //     }   
         
-    }
+    // }
 
         
 
