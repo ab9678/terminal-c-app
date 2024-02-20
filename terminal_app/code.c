@@ -5,8 +5,11 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <unistd.h>
+#ifdef __linux__
 #include <sys/ioctl.h>
+#endif
 #ifdef _WIN32
+#include<windows.h>
 #include<conio.h>
 #endif
 #define BLK "\e[0;30m"
@@ -29,15 +32,35 @@
     const char *os = "Unknown";
     int osflag = -1;
 #endif
+
+//print long seperator
 void printHorizontalLine() {
+    #ifdef __linux__
     struct winsize w;
     ioctl(STDOUT_FILENO, TIOCGWINSZ, &w); // Get terminal size
     int width = w.ws_col;
-
+    printf("\n");
     for (int i = 0; i < width-1; i++) {
-        putchar('-'); // Print '-' for the entire width
+        printf(YEL"-"RESET); // Print '-' for the entire width
     }
     putchar('\n');
+    #elif _WIN32
+    CONSOLE_SCREEN_BUFFER_INFO csbi;
+    HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
+
+    // Get the console screen buffer information.
+    GetConsoleScreenBufferInfo(console, &csbi);
+
+    // Calculate the width of the console window.
+    int consoleWidth = csbi.srWindow.Right - csbi.srWindow.Left + 1;
+
+    // Print a horizontal line of dashes.
+    printf("\n");
+    for (int i = 0; i < consoleWidth; ++i) {
+        printf(YEL"-"RESET);
+    }
+    printf("\n");
+    #endif
 }
 
 long long int factorial(int n);
@@ -963,28 +986,33 @@ printf("\n----------------------------------------------------------------------
 
 //INTEGER END
 }else if(operation == 5){
-    printf(YEL"\n------------------------------------------------------------------------------------------------------\n");
-    printf("You have selected Stuctures");
-    printf("\n------------------------------------------------------------------------------------------------------\n"RESET);
+    printHorizontalLine();
+    //printf(YEL"\n------------------------------------------------------------------------------------------------------\n");
+    printf("\nYou have selected Stuctures\n");
+    //printf("\n------------------------------------------------------------------------------------------------------\n"RESET);
+    printHorizontalLine();
+
     structures();
     
 
     
 }
+printHorizontalLine();
 char pressKey;
+printf(RED"\nPress any key to exit\n"RESET);
 #ifdef _WIN32
 if(osflag == 1){
+   
     pressKey = getch();
 }
 #endif
 if(osflag!=1){
-    printf(RED"\nPress any key to exit\n"RESET);
 
     scanf(" %c",&pressKey);
 
 }
-printHorizontalLine();
-printf("\nyoo\n");
+
+
 printf("\e[0;93m");
 printf("\n\n\nThank You\n\n");
 printf("\e[0m");
