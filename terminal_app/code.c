@@ -5,7 +5,10 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <unistd.h>
-
+#include <sys/ioctl.h>
+#ifdef _WIN32
+#include<conio.h>
+#endif
 #define BLK "\e[0;30m"
 #define RED "\e[0;31m"
 #define GRN "\e[0;32m"
@@ -26,6 +29,17 @@
     const char *os = "Unknown";
     int osflag = -1;
 #endif
+void printHorizontalLine() {
+    struct winsize w;
+    ioctl(STDOUT_FILENO, TIOCGWINSZ, &w); // Get terminal size
+    int width = w.ws_col;
+
+    for (int i = 0; i < width-1; i++) {
+        putchar('-'); // Print '-' for the entire width
+    }
+    putchar('\n');
+}
+
 long long int factorial(int n);
 void asciiHello(){
     printf("\n\n");
@@ -703,7 +717,7 @@ int structures(){
 
     int option;
     char prompt;
-    printf("(1)Create a structure to store details of students\n(2)Create a structure to store details of employees\nInput: ");
+    printf(YEL"(1)Create a structure to store details of students\n(2)Create a structure to store details of employees\nInput: "RESET);
     scanf("%d",&option);
     if (option == 1){
         
@@ -763,77 +777,87 @@ int structures(){
 
                 
         }
-    }
-    //print the options which are saved for my reference
-    printf("\n\n");
-    for(i=0;i<numOfoptions;i++){
-        printf("%d\t",savedOptions[i]);
-    }
+    
+        //print the options which are saved for my reference
+        printf("\n\n");
+        for(i=0;i<numOfoptions;i++){
+            printf("%d\t",savedOptions[i]);
+        }
 
+            
+        //_________________________
+        // Now let's search for elements in the array , so that we can tell the user which options he chose
+        // printf("\n");
+        // printf(YEL"\nYou have chosen the below fields\n\n"RESET);
+        // for(i=0;i<numOfoptions;i++){
+        //     if(savedOptions[i]==1){
+        //         printf(GRN"Name\n"RESET);
+        //     }
+        //     if(savedOptions[i]==2){
+        //         printf(GRN"Roll Number\n"RESET);
+        //     }
+        //     if(savedOptions[i]==1){
+        //         printf(GRN"Section\n"RESET);
+        //     }
+        //     if(savedOptions[i]==2){
+        //         printf(GRN"Average Marks\n"RESET);
+        //     }
+        //     if(savedOptions[i]==1){
+        //         printf(GRN"Indivisual Best\n"RESET);
+        //     }
+        //     if(savedOptions[i]==2){
+        //         printf(GRN"Subject Topper\n"RESET);
+        //     }
+        //     if(savedOptions[i]==1){
+        //         printf(GRN"Class Topper\n"RESET);
+        //     }
+
+
+            
+        // }
+        // char yesORno;
+        // printf("\nIS THE FIELDS CORRECT?(y/n) ");
+        // scanf(" %c",&yesORno);
+        // if(yesORno == 'n'){
+        //     return 1;
+        // }
+
+        // //search field and run code
+        // printf(YEL"\n\n--------------------------------------------------------------------------------------\n\n"RESET);
+        // printf("Course: %s\nSemster: %d",whichCourse,whichSemester);
+        // for(i=0;i<numOfStudents;i++){
+            
+        //     for(j=0;j<numOfoptions;i++){
+        //         if(savedOptions[i]==1){
+        //             printf("\nName: ");
+        //             scanf(" %c",&s1[i].name);
+        //         }for(j=0;j<numOfStudents;i++){
+                    
+        //         }
+        //     }   
+            
+        // }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    }//closing for student structure's if-block
         
-    //_________________________
-    // Now let's search for elements in the array , so that we can tell the user which options he chose
-    // printf("\n");
-    // printf(YEL"\nYou have chosen the below fields\n\n"RESET);
-    // for(i=0;i<numOfoptions;i++){
-    //     if(savedOptions[i]==1){
-    //         printf(GRN"Name\n"RESET);
-    //     }
-    //     if(savedOptions[i]==2){
-    //         printf(GRN"Roll Number\n"RESET);
-    //     }
-    //     if(savedOptions[i]==1){
-    //         printf(GRN"Section\n"RESET);
-    //     }
-    //     if(savedOptions[i]==2){
-    //         printf(GRN"Average Marks\n"RESET);
-    //     }
-    //     if(savedOptions[i]==1){
-    //         printf(GRN"Indivisual Best\n"RESET);
-    //     }
-    //     if(savedOptions[i]==2){
-    //         printf(GRN"Subject Topper\n"RESET);
-    //     }
-    //     if(savedOptions[i]==1){
-    //         printf(GRN"Class Topper\n"RESET);
-    //     }
-
-
-        
-    // }
-    // char yesORno;
-    // printf("\nIS THE FIELDS CORRECT?(y/n) ");
-    // scanf(" %c",&yesORno);
-    // if(yesORno == 'n'){
-    //     return 1;
-    // }
-
-    // //search field and run code
-    // printf(YEL"\n\n--------------------------------------------------------------------------------------\n\n"RESET);
-    // printf("Course: %s\nSemster: %d",whichCourse,whichSemester);
-    // for(i=0;i<numOfStudents;i++){
-        
-    //     for(j=0;j<numOfoptions;i++){
-    //         if(savedOptions[i]==1){
-    //             printf("\nName: ");
-    //             scanf(" %c",&s1[i].name);
-    //         }for(j=0;j<numOfStudents;i++){
-                
-    //         }
-    //     }   
-        
-    // }
-
-        
-
-
-
-
-
-
-
-
-
 
 
 
@@ -947,10 +971,20 @@ printf("\n----------------------------------------------------------------------
 
     
 }
+char pressKey;
+#ifdef _WIN32
+if(osflag == 1){
+    pressKey = getch();
+}
+#endif
+if(osflag!=1){
+    printf(RED"\nPress any key to exit\n"RESET);
 
+    scanf(" %c",&pressKey);
 
-
-
+}
+printHorizontalLine();
+printf("\nyoo\n");
 printf("\e[0;93m");
 printf("\n\n\nThank You\n\n");
 printf("\e[0m");
