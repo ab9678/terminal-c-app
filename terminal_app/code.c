@@ -310,12 +310,10 @@ scanf("%d",&typeOfOperation);
 if(typeOfOperation == 1){
 
 // This is type 1 i.e., matrix manipulation
-printf(YEL"\n----------------------------------------------------------------------------------------------------------------------\n\n");
+printHorizontalLine();
+    printf("\nOption 1- MATRIX MANIPULATION IS SELECTED\n");
 
-    printf("Option 1- MATRIX MANIPULATION IS SELECTED\n");
-
-printf("\n----------------------------------------------------------------------------------------------------------------------\n\n"RESET);
-
+printHorizontalLine();
     printf("\nEnter the matrix:-\n");
     for(i=0;i<rowSize;i++){
         printf("Row %d\n",i+1);
@@ -330,9 +328,9 @@ printf("\n----------------------------------------------------------------------
         //do square and transpose ##
         if(insideType1 == 1){
 
-    printf(YEL"\n----------------------------------------------------------------------------------------------------------------------\n");
-            printf("You have selected Transpose of a matrix\n");
-    printf("\n----------------------------------------------------------------------------------------------------------------------\n\n"RESET);
+            printHorizontalLine();
+            printf("\nYou have selected Transpose of a matrix\n");
+            printHorizontalLine();
             printf("\nOriginal matrix is \n");
 
             for(i=0;i<rowSize;i++){
@@ -352,9 +350,9 @@ printf("\n----------------------------------------------------------------------
 
 
         }else if(insideType1 == 2){
-    printf(YEL"\n----------------------------------------------------------------------------------------------------------------------\n");
+            printHorizontalLine();
             printf("You have selected Square of a matrix\n");
-    printf("\n----------------------------------------------------------------------------------------------------------------------\n\n"RESET);
+            printHorizontalLine();
             printf("Original matrix is \n");
 
             for(i=0;i<rowSize;i++){
@@ -390,11 +388,10 @@ printf("\n----------------------------------------------------------------------
 }else{          // if 2 is selected we will have matrix calculator 
 
 // This is type 2 i.e, Arithmetic opearation
-printf(YEL"\n----------------------------------------------------------------------------------------------------------------------\n\n");
-    printf("Option 2- ARITHMETIC CALCULATION IS SELECTED \n\n");
+printHorizontalLine();
+    printf("\nOption 2- ARITHMETIC CALCULATION IS SELECTED \n\n");
     printf(RED"!!PLEASE NOTE MULTIPLICATION IS AVAILABLE ONLY FOR SQUARE MATRICES!!\n"RESET);
-printf(YEL"----------------------------------------------------------------------------------------------------------------------\n\n"RESET);
-
+printHorizontalLine();
 
 printf("\nEnter the first matrix:-\n");
 for(i=0;i<rowSize;i++){
@@ -432,10 +429,9 @@ printf(GRN"\nPlease select one of the following \n\n +  ,  -  ,  * \nInput: "RES
 scanf(" %c",&insideType2);
 
 if(insideType2 == '+'){
-printf("\n----------------------------------------------------------------------------------------------------------------------\n");
-    printf("ADDITION OF MATRICES");
-printf("\n----------------------------------------------------------------------------------------------------------------------\n\n");
-
+printHorizontalLine();
+    printf("\nADDITION OF MATRICES\n");
+printHorizontalLine();
     int sum=0;
     printf("\n\nRESULTANT MATRIX:-\n\n");
     for(i=0;i<rowSize;i++){
@@ -446,9 +442,9 @@ printf("\n----------------------------------------------------------------------
         printf("\n");
     }
 }else if(insideType2 == '-'){
-printf(YEL"\n----------------------------------------------------------------------------------------------------------------------\n");
-    printf("DIFFERENCE OF MATRICES");
-printf("\n----------------------------------------------------------------------------------------------------------------------\n\n"RESET);
+    printHorizontalLine();
+    printf("\nDIFFERENCE OF MATRICES\n");
+    printHorizontalLine();
     int diff=0;
     printf("\n\nRESULTANT MATRIX:-\n\n");
     for(i=0;i<rowSize;i++){
@@ -463,9 +459,9 @@ printf("\n----------------------------------------------------------------------
         printf("\n");
     }
 }else if(insideType2 == '*'){
-printf(YEL"\n----------------------------------------------------------------------------------------------------------------------\n");
-    printf("MULTIPLICATION OF MATRICES");
-printf("\n----------------------------------------------------------------------------------------------------------------------\n\n"RESET);
+    printHorizontalLine();
+    printf("\nMULTIPLICATION OF MATRICES\n");
+    printHorizontalLine();
     printf(GRN"\n\n!!PLEASE NOTE MULTIPLICATION IS AVAILABLE ONLY FOR SQUARE MATRICES!!\n\n"RESET);
     int r[rowSize][columnSize];
     if(rowSize==columnSize){    //multiplication if 
@@ -509,9 +505,9 @@ scanf("%d",&operation);
 
 if(operation == 1){
     printf("\e[0;93m");
-    printf("\n------------------------------------------------------------------------------------------------------\n");
+    printHorizontalLine();
     printf("You Chose Calculator");
-    printf("\n------------------------------------------------------------------------------------------------------\n");
+    printHorizontalLine();
     printf("\e[0m");
 
     int calType;
@@ -563,10 +559,9 @@ if(operation == 1){
     }
 }else if(operation == 2){
     int insideOperation;
-    printf(YEL"\n------------------------------------------------------------------------------------------------------\n");
-    printf("You Chose Other");
-    printf("\n------------------------------------------------------------------------------------------------------\n"RESET);
-    
+    printHorizontalLine();
+    printf("\nYou Chose Other\n");
+    printHorizontalLine();    
     printf("\nSelect one of the following"RESET);
     printf("\n\n(1)Check prime\n(2)Check if No. is Armstrong No.\n(3)Check if a Number belongs to Fibonacci sequence\n\n"YEL"Input: "RESET);
     
@@ -908,10 +903,9 @@ char yesORno;
 if(operation==1){
     int arrSize;
     
-    printf(YEL"\n----------------------------------------------------------------------------------------------------------------------\n");
-    printf("You have selected Array");
-    printf("\n----------------------------------------------------------------------------------------------------------------------\n\n"RESET);
-
+    printHorizontalLine();
+    printf("\nYou have selected Array\n");
+    printHorizontalLine();
     printf("Enter the size of your array:\t");
     scanf("%d",&arrSize);
     returnedValue=array(arrSize);
@@ -920,6 +914,8 @@ if(operation==1){
         scanf(" %c",&yesORno);
         if(yesORno == 'y'){
             array(arrSize);
+        }else{
+            printf("\n");
         }
         
     }else{//To be able to run array again
@@ -927,6 +923,8 @@ if(operation==1){
         scanf(" %c",&yesORno);
         if(yesORno=='y'){
             array(arrSize);
+        }else{
+            printf("\n");
         }
     }
     // ARRAY PART {End}
@@ -935,11 +933,9 @@ if(operation==1){
 
 // MATRIX START
 }else if(operation == 2){
-    printf(YEL"\n----------------------------------------------------------------------------------------------------------------------\n");
-
-    printf("You Have selected Matrix");
-    printf("\n----------------------------------------------------------------------------------------------------------------------\n\n"RESET);
-
+    printHorizontalLine();
+    printf("\nYou Have selected Matrix\n");
+    printHorizontalLine();
     returnedValue=matrix();
 
 
@@ -948,12 +944,16 @@ if(operation==1){
         scanf(" %c",&yesORno);
         if(yesORno == 'y'){
             matrix();
+        }else{
+            printf("\n");
         }
     }else{
         printf(GRN"\n\nOnce More(y/n)?\n"RESET);
         scanf(" %c",&yesORno);
         if(yesORno == 'y'){
             matrix();
+        }else{
+            printf("\n");
         }
     }
     
@@ -964,21 +964,25 @@ if(operation==1){
 //MATRIX END
 }else if(operation == 3){
 //INTEGER START
-printf(YEL"\n------------------------------------------------------------------------------------------------------\n");
-    printf("You have selected Integers");
-printf("\n------------------------------------------------------------------------------------------------------\n"RESET);
+    printHorizontalLine();
+    printf("\nYou have selected Integers\n");
+    printHorizontalLine();
     returnedValue=integer();
     if(returnedValue == 1){
         printf(GRN"\n\nDo You want to try Again?(y/n)\n"RESET);
         scanf(" %c",&yesORno);
         if(yesORno == 'y'){
             integer();
+        }else{
+            printf("\n");
         }
     }else{
         printf(GRN"\n\nOnce More(y/n)?\n"RESET);
         scanf(" %c",&yesORno);
         if(yesORno == 'y'){
             integer();
+        }else{
+            printf("\n");
         }
     }
     
@@ -987,9 +991,7 @@ printf("\n----------------------------------------------------------------------
 //INTEGER END
 }else if(operation == 5){
     printHorizontalLine();
-    //printf(YEL"\n------------------------------------------------------------------------------------------------------\n");
     printf("\nYou have selected Stuctures\n");
-    //printf("\n------------------------------------------------------------------------------------------------------\n"RESET);
     printHorizontalLine();
 
     structures();
@@ -997,9 +999,21 @@ printf("\n----------------------------------------------------------------------
 
     
 }
+printf(CYN);
 printHorizontalLine();
+printf(RESET);
+
 char pressKey;
 printf(RED"\nPress any key to exit\n"RESET);
+
+
+
+printf("\e[0;93m");
+printf("\n\n\nThank You\n\n");
+printf("\e[0m");
+printf("\e[0;35m");
+asciiThankYou();
+printf("\e[0m");
 #ifdef _WIN32
 if(osflag == 1){
    
@@ -1011,14 +1025,6 @@ if(osflag!=1){
     scanf(" %c",&pressKey);
 
 }
-
-
-printf("\e[0;93m");
-printf("\n\n\nThank You\n\n");
-printf("\e[0m");
-printf("\e[0;35m");
-asciiThankYou();
-printf("\e[0m");
 //Main Function End
 }
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
